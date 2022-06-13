@@ -1,0 +1,27 @@
+﻿@model List<PokemonStorage.Models.Pokemon>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Box1</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="mycontainer" style="border:2px solid yellow">
+        <div class="mybox" style="border: 2px solid black">
+            @foreach (var p in Model)
+            {
+                @Html.DisplayFor(item => p.PName)
+                @Html.DisplayFor(item => p.PType)
+                @Html.DisplayFor(item => p.PLevel)
+                @Html.DisplayFor(item => p.PGender)
+            }
+        </div>
+    </div>
+</body>
+</html>

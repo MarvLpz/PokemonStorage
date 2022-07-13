@@ -4,24 +4,50 @@
 }
 
 <!DOCTYPE html>
-
+@*https://www.youtube.com/watch?v=ITWZmUYnQ-s multi model*@
+@*partial view with model*@
+@*https://github.com/geeksarray/render-partialview-with-model/tree/master/RenderPartialViewWithModel*@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Box1</title>
+    @*<link href="@Url.Content("~/Styles/BoxStyle.css")" rel="stylesheet" type="text/css" />*@
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="mycontainer" style="border:2px solid yellow">
         <div class="mybox" style="border: 2px solid black">
             @foreach (var p in Model)
             {
-                @Html.DisplayFor(item => p.PName)
-                @Html.DisplayFor(item => p.PType)
-                @Html.DisplayFor(item => p.PLevel)
-                @Html.DisplayFor(item => p.PGender)
+                //although data-* Attribute is for custom attributes, data-target and data-toggle is part of bootstrapcss
+                <a class="btn-success btn-sm" href="@Url.Action("Popup","Box",new { name = p.PName, TID = p.TID })" type="Button" data-toggle="modal" data-target="#exampleModal">
+                    <div>@Html.DisplayFor(x => p.PName)<p style="font-size:12px">@Html.DisplayFor(x => p.PType)</p></div>
+                </a>
             }
         </div>
     </div>
+    <div>
+        @Html.ActionLink("Deposit","Index", "Deposit")
+    </div>
+
+    @*class attributes are the only concern of bootstrap*@
+    @*ARIA is shorthand for Accessible Rich Internet Applications.
+        ARIA is a set of attributes you can add to HTML elements that define ways to make web content and applications accessible to users
+        with disabilities who use assistive technologies (AT). When accessibility issues cannot be managed with native HTML, ARIA can help bridge those gaps.*@
+    @*Most of the roles you see were defined as part of ARIA 1.0, and then later incorporated into HTML via supporting specs like HTML-AAM.
+        Some of the new HTML5 elements (dialog, main, etc.) are even based on the original ARIA roles.*@
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    @*<button class="btn btn-success" href="@Html.Action( "Index", "Deposit")">Deposit</button>*@
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
 </body>
 </html>

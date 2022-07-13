@@ -1,0 +1,23 @@
+﻿@*https://www.youtube.com/watch?v=rJEo4PNGps8&t=240s*@
+@model PokemonStorage.Models.Pokemon
+
+<div class="col-md-5 col-md-offset-3">
+    <div class="modal-header">
+        @*<button style="background-color: red" type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true"> &times;</span>
+        </button>*@
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <p>Name: @Model.PName</p>
+        <p>Type: @Model.PType</p>
+        <p>Level: @Model.PLevel</p>
+        <p>Gender: @Model.PGender</p>
+    </div>
+    <form>
+        <div class="modal-footer">
+            <button class="btn btn-success" href="@Url.Action("Index", "Deposit")">Create</button>
+            <button class="btn btn-success" data-dismiss="modal">Close</button>
+            <button class="btn btn-success">Save</button>
+            
+        </div>
+    </form>
+</div>

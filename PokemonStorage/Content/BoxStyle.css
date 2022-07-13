@@ -1,22 +1,26 @@
-﻿* {
-    box-sizing: border-box
-}
-body {
-    margin: 0;
+﻿body {
+    box-sizing: border-box;
     padding: 0;
+    margin: 0;
 }
 
 .mycontainer {
     display: grid;
-    min-height: 70vh;
-    min-width: 100vw;
     justify-content: center;
     align-items: center;
+    height: 70vh;
+    width: 100vw;
+    /* grid-template-columns: repeat(2,auto);*/
 }
 
 .mybox {
-    display: grid;
-    background-color: lightblue;
+    background-color: indianred;
+    height: 50vh;
     width: 70vw;
-    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(6,auto);
+    grid-template-rows: repeat(6,auto);
+    /*justify-content: center;
+    align-items: center;*/
+    gap: 20px;
 }

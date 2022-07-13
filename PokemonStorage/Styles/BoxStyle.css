@@ -1,0 +1,17 @@
+﻿body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.mycontainer {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2,auto);
+}
+
+.mybox {
+    background-color: darkslategrey;
+    height: 70vh;
+    width: 100vw;
+}

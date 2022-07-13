@@ -5,20 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using PokemonStorage.Models;
 using DBHelper.DataAccess;
-
+//https://www.youtube.com/watch?v=SABg7RyjX-4 partial view
 namespace PokemonStorage.Controllers
 {
     public class BoxController : Controller
     {
-        // GET: Box
-        public ActionResult Box1()
-        {
-           
+        public List<Pokemon> GetPokemonList() {
             List<Pokemon> pkm = new List<Pokemon>();
-            foreach (var x in SqlDataAccess.LoadData<Pokemon>()) {
+            foreach (var x in SqlDataAccess.LoadData<Pokemon>())
+            {
                 pkm.Add(new Pokemon
                 {
-                    //TID = 2001,
+                    TID = x.TID,
                     PName = x.PName,
                     //PNickname = "Charizard",
                     PType = x.PType,
@@ -28,11 +26,33 @@ namespace PokemonStorage.Controllers
                     //PBox = 1
                 });
             }
-            
-            
-            System.Diagnostics.Debug.WriteLine("Before Load Data");
-            
-            return View(pkm);
+            return pkm;
+        }
+
+        public Pokemon GetPokemon(int TID, string PName)
+        {
+            SqlDataAccess.GetPokemon(TID, PName);
+            Pokemon pkm = new Pokemon
+                {
+                    TID = SqlDataAccess.GetPokemon(TID, PName).TID,
+                    PName = SqlDataAccess.GetPokemon(TID, PName).PName,
+                    PType = SqlDataAccess.GetPokemon(TID, PName).PType,
+                    PLevel = SqlDataAccess.GetPokemon(TID, PName).PLevel,
+                    PGender = SqlDataAccess.GetPokemon(TID, PName).PGender,
+                };
+            return pkm;
+        }
+        // GET: Box
+        public ActionResult Box1()
+        {
+            System.Diagnostics.Debug.WriteLine("Before Load Data"); 
+            return View(GetPokemonList());
+        }
+        //NEXT use pass pkm model as argument to return partial view
+        public ActionResult Popup( int TID, string name)
+        {
+            System.Diagnostics.Debug.WriteLine("PopupView Clicked " + SqlDataAccess.GetPokemon(TID, name).PName);
+            return PartialView(GetPokemon(TID, name));
         }
     }
 }

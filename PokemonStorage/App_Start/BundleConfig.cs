@@ -25,7 +25,8 @@ namespace PokemonStorage
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/BoxStyle.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"
+                      ));
         }
     }
 }
